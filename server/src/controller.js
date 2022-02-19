@@ -114,7 +114,7 @@ async function getAudioFile(req, res) {
   }
 }
 
-async function getResult(req, res) {
+async function getStatus(req, res) {
   const id = req.params.id;
 
   const status = await loadStatus(id);
@@ -139,4 +139,4 @@ async function getResult(req, res) {
   res.json(newStatus);
 }
 
-export { postUpload, getResult, getAudioFile };
+export { postUpload, getStatus, getAudioFile };
