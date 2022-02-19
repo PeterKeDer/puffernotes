@@ -9,6 +9,7 @@ class Waveform extends Component {
     };
 
     componentDidMount() {
+        console.log("Loading")
         const track = document.querySelector('#track');
 
         this.waveform = WaveSurfer.create({
@@ -24,6 +25,10 @@ class Waveform extends Component {
         });
 
         this.waveform.load(track);
+
+        this.waveform.on('ready', function () {
+            console.log("Hi")
+        });
     };
 
     handlePlay = () => {
