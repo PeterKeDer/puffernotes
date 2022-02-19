@@ -2,7 +2,6 @@ import logo from './logo.svg';
 import './App.css';
 
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import Layout from "./pages/Layout";
 import Home from "./pages/Home";
 import Contact from "./pages/Contact";
 import NoPage from "./pages/NoPage";
@@ -16,7 +15,7 @@ function App() {
     <div className="App">
       {/*  */}
         <Routes>
-          <Route path="/" element={<Layout />}>
+          <Route path="/">
             <Route index element={<Home />} />
             <Route path="contact" element={<Contact />} />
             <Route path="*" element={<NoPage />} />
