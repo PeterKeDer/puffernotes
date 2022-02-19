@@ -1,5 +1,13 @@
+import Waveform from './audioSupport/final-waveform'
+
 const Contact = () => {
-    return <h1>Contact Me</h1>;
-  };
-  
-  export default Contact;
+  return (
+    <div>
+      <h1>Contact Me2</h1>
+      <Waveform/>
+    </div>
+
+  );
+};
+
+export default Contact;
