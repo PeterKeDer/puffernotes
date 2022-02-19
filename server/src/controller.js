@@ -36,12 +36,6 @@ async function saveStatus(status) {
 async function loadStatus(id) {
   const statusBasePath = `${process.env.STORAGE_PATH}/status`;
 
-  try {
-    await fs.access(statusBasePath);
-  } catch {
-    await fs.mkdir(statusBasePath);
-  }
-
   const statusPath = `${statusBasePath}/${id}.json`;
   try {
     const status = await fs.readFile(statusPath);
@@ -85,33 +79,37 @@ async function postUpload(req, res) {
       postData
     );
 
-    const status = transcriptRes.data;
+    const status = {
+      filename: file.filename,
+      original_name: file.originalname,
+      ...transcriptRes.data,
+    };
     await saveStatus(status);
 
     // Return the status object as response
     res.json(status);
   } catch (e) {
+    // Delete file there's an error
+    await fs.unlink(file.path);
+
     console.log(e);
     res.json({
       error: e.message,
     });
-  } finally {
-    // Delete file since it's no longer needed
-    await fs.unlink(file.path);
   }
 }
 
 async function getAudioFile(req, res) {
-  const filename = req.params.id;
-  const path = `${process.env.STORAGE_PATH}/audio/${filename}`;
-
-  if (!(await fs.access(path))) {
-    res.download(path);
-  } else {
-    res.status(404).json({
-      error: "File not found",
+  const id = req.params.id;
+  const status = await loadStatus(id);
+  if (!status) {
+    return res.status(404).json({
+      error: "ID not found",
     });
   }
+
+  const path = `${process.env.STORAGE_PATH}/audio/${status.filename}`;
+  res.download(path, status.original_name);
 }
 
 async function getResult(req, res) {
@@ -132,7 +130,11 @@ async function getResult(req, res) {
   const assembly = createAxiosInstance();
   const assemblyRes = await assembly.get(`/transcript/${id}`);
 
-  const newStatus = assemblyRes.data;
+  const newStatus = {
+    filename: status.filename,
+    original_name: status.original_name,
+    ...assemblyRes.data,
+  };
 
   await saveStatus(newStatus);
 

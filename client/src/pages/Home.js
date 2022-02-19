@@ -30,9 +30,8 @@ const Home = () => {
 
       </section>
       <section class="white-background">
-
       </section>
-    </ThemeProvider>
+      </ThemeProvider>
   );
 };
 

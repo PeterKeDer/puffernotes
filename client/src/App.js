@@ -1,12 +1,9 @@
-import logo from './logo.svg';
 import './App.css';
 
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import Contact from "./pages/Contact";
+import Summary from "./pages/Summary";
 import NoPage from "./pages/NoPage";
-
-import routes from './routes';
 
 function App() {
   return (
@@ -15,7 +12,7 @@ function App() {
         <Routes>
           <Route path="/">
             <Route index element={<Home />} />
-            <Route path="contact" element={<Contact />} />
+            <Route path="summary" element={<Summary />} />
             <Route path="*" element={<NoPage />} />
           </Route>
         </Routes>
