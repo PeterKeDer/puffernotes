@@ -2,7 +2,7 @@ import Waveform from './audioSupport/final-waveform'
 
 const AUDIO_MUSIC = "https://www.mfiles.co.uk/mp3-downloads/gs-cd-track2.mp3"
 
-const Contact = () => {
+const Summary = () => {
   return (
     <div>
       <h1>Supper Cool IDS League Lecture Summary</h1>
@@ -12,4 +12,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default Summary;
