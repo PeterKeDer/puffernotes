@@ -1,0 +1,50 @@
+section {
+  position: relative;
+  display: flex;
+  min-height: 400px;
+}
+
+.section-top {
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding-top: 20px;
+    padding-right: 20px;
+}
+
+.dark-blue-background {
+  background: #020887;
+}
+
+.orange-background {
+  background: #ffb140;
+}
+
+.light-blue-background {
+  background: #38369a;
+}
+
+.white-background {
+  background: white;
+}
+
+.wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.wave svg {
+    position: relative;
+    display: block;
+    width: calc(147% + 1.3px);
+    height: 174px;
+    transform: rotateY(180deg);
+}
+
+.wave .shape-fill {
+    fill: #FFFFFF;
+}
