@@ -1,8 +1,12 @@
 import Button from '@mui/material/Button';
+import UploadIcon from '@mui/icons-material/Upload';
 
-const NavButton = () => {
+const NavButton = (props) => {
   return (
-    <Button variant="contained">Upload File</Button>
+    <Button variant="contained" color={props.buttonColor}>
+        Upload File
+        
+    </Button>
   );
 }
 
