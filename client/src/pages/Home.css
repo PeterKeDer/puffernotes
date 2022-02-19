@@ -4,11 +4,25 @@ section {
   min-height: 400px;
 }
 
-.section-top {
-    justify-content: flex-end;
-    align-items: flex-start;
-    padding-top: 20px;
-    padding-right: 20px;
+/* .section-top {
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  padding-top: 20px;
+  padding-right: 20px;
+} */
+
+/* .section-top>* {
+  flex: 1 auto;
+} */
+
+.header-text {
+  position: absolute;
+  top: 100px;
+  left: 100px;
+  text-align: left;
+  color: white;
+  z-index: 1;
 }
 
 .dark-blue-background {
@@ -25,26 +39,50 @@ section {
 
 .white-background {
   background: white;
+  display: flex;
+  justify-content: center;
 }
 
-.wave {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    overflow: hidden;
-    line-height: 0;
-    transform: rotate(180deg);
+.wave1 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: rotate(180deg);
 }
 
-.wave svg {
-    position: relative;
-    display: block;
-    width: calc(147% + 1.3px);
-    height: 174px;
-    transform: rotateY(180deg);
+.wave1 svg {
+  position: relative;
+  display: block;
+  width: calc(147% + 1.3px);
+  height: 174px;
+  transform: rotateY(180deg);
 }
 
-.wave .shape-fill {
-    fill: #FFFFFF;
+.wave1 .shape-fill {
+  fill: #FFFFFF;
+}
+
+.wave2 {
+  position: absolute;
+  /* top: 10; */
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: rotate(180deg);
+}
+
+.wave2 svg {
+  position: relative;
+  display: block;
+  width: calc(133% + 1.3px);
+  height: 288px;
+}
+
+.wave2 .shape-fill {
+  fill: #38369A;
 }
