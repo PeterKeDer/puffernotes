@@ -5,7 +5,7 @@ const NavButton = (props) => {
   return (
     <Button variant="contained" color={props.buttonColor}>
         Upload File
-        
+        <UploadIcon></UploadIcon>
     </Button>
   );
 }
