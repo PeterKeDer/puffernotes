@@ -11,6 +11,9 @@ import Typography from "@mui/material/Typography";
 
 import { msToTimeString } from "../helpers/timeUtil";
 
+import './UploadBox.css'
+
+
 const KeywordCell = ({ keyword, isSelected, onKeywordClick, keywordsRef }) => {
   const { text } = keyword;
 
@@ -62,6 +65,7 @@ const Keywords = ({ keywords, selectedKeyword, onKeywordClick, keywordsRef }) =>
     overflow="auto"
     borderRadius="15px"
     border="2px solid #020887"
+    className="noscroll"
     >
       <Box sx={{ display: "flex", alignItems: "flex-end" }}>
         <SearchIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />

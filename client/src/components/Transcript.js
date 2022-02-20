@@ -5,6 +5,8 @@ import { orange } from "@mui/material/colors";
 
 import { msToTimeString } from "../helpers/timeUtil";
 
+import './UploadBox.css'
+
 const Word = ({
   word,
   onTimestampClick,
@@ -126,6 +128,7 @@ const Transcript = ({ words, selectedKeyword, onTimestampClick, keywords, keywor
 
   return (
     <Box
+      className="noscroll"
       textAlign="left"
       backgroundColor="white"
       height="65vh"

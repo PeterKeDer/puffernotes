@@ -14,6 +14,9 @@ import Box from "@mui/material/Box";
 
 import { msToTimeString } from "../helpers/timeUtil";
 
+import './UploadBox.css'
+
+
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
@@ -72,6 +75,7 @@ const ChapterCell = ({ chapterNumber, chapter, onTimestampClick }) => {
 const Chapters = ({ chapters, onTimestampClick }) => {
   return (
     <Grid container direction="row" 
+    className="noscroll"
     padding={2} gap={2}
     backgroundColor="white"
     height="35vh"

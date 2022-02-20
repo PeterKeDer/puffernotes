@@ -3,3 +3,8 @@
     flex-direction: row;
     align-items: center;
 }
+
+
+.noscroll::-webkit-scrollbar {
+    display: none;
+  }
