@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { getStatus } from "../helpers/endpoints";
 
 import Chapters from "../components/Chapters";
+import Keywords from "../components/Keywords";
 
 const Result = () => {
   const { id } = useParams();
@@ -13,14 +14,15 @@ const Result = () => {
   useEffect(() => {
     if (id === null || id === "") return;
 
-    const interval = setInterval(async () => {
+    const fetchStatus = async () => {
       if (isComplete) return;
-
-      console.log("Polling for status");
 
       const status = await getStatus(id);
       setStatus(status);
-    }, 10000);
+    };
+
+    fetchStatus();
+    const interval = setInterval(fetchStatus, 10000);
 
     return () => clearInterval(interval);
   }, [id, isComplete]);
@@ -48,6 +50,15 @@ const Result = () => {
             console.log({ start, end });
           }}
         />
+
+        {status.auto_highlights_result.status === "success" ? (
+          <Keywords
+            keywords={status.auto_highlights_result.results}
+            onKeywordClick={(index) => console.log(index)}
+          />
+        ) : (
+          <p>No keywords detected</p>
+        )}
       </div>
     );
   }
