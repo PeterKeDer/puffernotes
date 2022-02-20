@@ -42,7 +42,7 @@ export const AudioControl = styled.div`
   align-items: center;
   width: 80%;
   flex-direction: column;
-  margin-bottom: 5vh;
+  margin-bottom: 2vh;
   background-color: #ffb140;
   border-radius: 15px;
   padding: 15px
