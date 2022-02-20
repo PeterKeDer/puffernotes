@@ -55,8 +55,8 @@ const Result = () => {
     return (
       <div className="page">
         <div className="page-head">
-           <img className="image-container" src={logo}></img>
-           </div>
+          <img className="image-container" src={logo}></img>
+        </div>
         <ResultComponent status={status} />
       </div>
 
