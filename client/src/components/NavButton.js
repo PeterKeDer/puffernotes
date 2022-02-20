@@ -1,21 +1,23 @@
 import Button from '@mui/material/Button';
 import UploadIcon from '@mui/icons-material/Upload';
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { postUpload } from "../helpers/endpoints";
 
 const NavButton = (props) => {
 
+  const inputFile = useRef(null);
   const navigate = useNavigate();
-
-  const [file, setFile] = useState(null);
   const [uploading, setUploading] = useState(false);
-  
   const canUpload = !uploading;
   
-  const handleUpload = async () => {
+  const uploadButtonClicked = () => {
     if (!canUpload) return;
-  
+    // inputFile.current.click();
+  };
+
+  const handleFile = async (file) => {
+    console.log(file);
     try {
       setUploading(true);
       const response = await postUpload(file);
@@ -28,7 +30,7 @@ const NavButton = (props) => {
     } finally {
       setUploading(false);
     }
-  };
+  }
 
   return (
     <Button 
@@ -36,14 +38,15 @@ const NavButton = (props) => {
       component="label" 
       color={props.buttonColor} 
       disabled={!canUpload}
-      onClick={handleUpload}>
+      onClick={uploadButtonClicked}>
         Upload File
         <UploadIcon></UploadIcon>
         <input 
           type="file" 
           accept=".mp3, audio/mpeg3" 
-          onChange={(e) => setFile(e.target.files[0])} 
-          hidden/>
+          onChange={(e) => handleFile(e.target.files[0])} 
+          ref={inputFile}
+          style={{display: 'none'}}/>
     </Button>
   );
 }
