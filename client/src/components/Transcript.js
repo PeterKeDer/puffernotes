@@ -37,9 +37,14 @@ const Word = ({
   );
 };
 
-const Sentence = ({ sentence, onTimestampClick }) => {
+const Sentence = ({ sentence, selectedKeyword, onTimestampClick }) => {
   const start = sentence[0].start;
   const end = sentence[sentence.length - 1].end;
+
+  const selectedIntervals =
+    selectedKeyword === null ? [] : selectedKeyword.timestamps;
+
+  console.log(selectedIntervals);
 
   return (
     <Box sx={{ display: "flex", alignItems: "start" }}>
@@ -55,6 +60,12 @@ const Sentence = ({ sentence, onTimestampClick }) => {
             key={i}
             word={word}
             onTimestampClick={onTimestampClick}
+            isHighlighted={selectedIntervals.some(
+              ({ start, end }) => start <= word.start && word.end <= end
+            )}
+            isSpaceHighlighted={selectedIntervals.some(
+              ({ start, end }) => start <= word.start && word.end < end
+            )}
           />
         ))}
       </Typography>
@@ -62,7 +73,7 @@ const Sentence = ({ sentence, onTimestampClick }) => {
   );
 };
 
-const Transcript = ({ words, onTimestampClick }) => {
+const Transcript = ({ words, selectedKeyword, onTimestampClick }) => {
   if (words.length === 0) {
     return (
       <Typography variant="body1" color="text.secondary">
@@ -95,6 +106,7 @@ const Transcript = ({ words, onTimestampClick }) => {
           key={i}
           sentence={sentence}
           onTimestampClick={onTimestampClick}
+          selectedKeyword={selectedKeyword}
         />
       ))}
     </Box>

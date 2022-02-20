@@ -7,11 +7,11 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import SearchIcon from "@mui/icons-material/Search";
 
-const KeywordCell = ({ keyword, onKeywordClick }) => {
+const KeywordCell = ({ keyword, isSelected, onKeywordClick }) => {
   const { text } = keyword;
 
   return (
-    <ListItem disablePadding>
+    <ListItem disablePadding selected={isSelected}>
       <ListItemButton onClick={() => onKeywordClick(keyword.index)}>
         <ListItemText primary={text.toLowerCase()} />
       </ListItemButton>
@@ -19,7 +19,7 @@ const KeywordCell = ({ keyword, onKeywordClick }) => {
   );
 };
 
-const Keywords = ({ keywords, onKeywordClick }) => {
+const Keywords = ({ keywords, selectedKeyword, onKeywordClick }) => {
   const [searchText, setSearchText] = useState("");
 
   // Attach index in original array, sort by count, and filter by search text
@@ -42,10 +42,11 @@ const Keywords = ({ keywords, onKeywordClick }) => {
         />
       </Box>
       <List>
-        {displayKeywords.map((keyword, i) => (
+        {displayKeywords.map(keyword => (
           <KeywordCell
-            key={i}
+            key={keyword.index}
             keyword={keyword}
+            isSelected={keyword.index === selectedKeyword}
             onKeywordClick={onKeywordClick}
           />
         ))}

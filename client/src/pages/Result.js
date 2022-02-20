@@ -12,6 +12,7 @@ import Transcript from "../components/Transcript";
 const Result = () => {
   const { id } = useParams();
   const [status, setStatus] = useState(null);
+  const [selectedKeyword, setSelectedKeyword] = useState(null);
   const isComplete =
     status && (status.status === "completed" || status.status === "error");
 
@@ -30,6 +31,14 @@ const Result = () => {
 
     return () => clearInterval(interval);
   }, [id, isComplete]);
+
+  const handleKeywordClicked = (keyword) => {
+    if (keyword === selectedKeyword) {
+      setSelectedKeyword(null);
+    } else {
+      setSelectedKeyword(keyword);
+    }
+  };
 
   if (status === null || !isComplete) {
     return (
@@ -56,6 +65,11 @@ const Result = () => {
           <Grid item xs={12} md={6}>
             <Transcript
               words={status.words}
+              selectedKeyword={
+                selectedKeyword === null
+                  ? null
+                  : status.auto_highlights_result.results[selectedKeyword]
+              }
               onTimestampClick={(start, end) => console.log({ start, end })}
             />
           </Grid>
@@ -70,7 +84,8 @@ const Result = () => {
             {status.auto_highlights_result.status === "success" ? (
               <Keywords
                 keywords={status.auto_highlights_result.results}
-                onKeywordClick={(index) => console.log(index)}
+                selectedKeyword={selectedKeyword}
+                onKeywordClick={(index) => handleKeywordClicked(index)}
               />
             ) : (
               <p>No keywords detected</p>
