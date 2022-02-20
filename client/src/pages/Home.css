@@ -1,88 +1,152 @@
-section {
-  position: relative;
-  display: flex;
-  min-height: 400px;
-}
+  section {
+    position: relative;
+    display: flex;
+    height: 600px;
+    width: 100%;
+  }
+  /* .section-top {
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding-top: 20px;
+    padding-right: 20px;
+  } */
 
-/* .section-top {
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  padding-top: 20px;
-  padding-right: 20px;
-} */
+  /* .section-top>* {
+    flex: 1 auto;
+  } */
 
-/* .section-top>* {
-  flex: 1 auto;
-} */
+  .notepad {
+    position: absolute;
+    top: 0;
+    float: right;
+    width: 50%;
+  }
 
-.header-text {
-  position: absolute;
-  top: 100px;
-  left: 100px;
-  text-align: left;
-  color: white;
-  z-index: 1;
-}
+  .features-grid {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+  }
 
-.dark-blue-background {
-  background: #020887;
-}
+  .header-text {
+    position: absolute;
+    top: 100px;
+    left: 100px;
+    text-align: left;
+    color: white;
+    z-index: 1;
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-shadow: 5px 5px #0000004d;
+  }
 
-.orange-background {
-  background: #ffb140;
-}
+  .dark-blue-background {
+    background: #020887;
+  }
 
-.light-blue-background {
-  background: #38369a;
-}
+  .orange-background {
+    background: #ffb140;
+  }
 
-.white-background {
-  background: white;
-  display: flex;
-  justify-content: center;
-}
+  .light-blue-background {
+    background: #38369a;
+  }
 
-.wave1 {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  overflow: hidden;
-  line-height: 0;
-  transform: rotate(180deg);
-}
+  .white-background {
+    background: white;
+    display: flex;
+    /* justify-content: center; */
+    flex-direction: column;
+    padding-bottom: 0%;
+    margin-bottom: 0%;
+    height: 400px;
+  }
 
-.wave1 svg {
-  position: relative;
-  display: block;
-  width: calc(147% + 1.3px);
-  height: 174px;
-  transform: rotateY(180deg);
-}
+  .wave1 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+  }
 
-.wave1 .shape-fill {
-  fill: #FFFFFF;
-}
+  .wave1 svg {
+    position: relative;
+    display: block;
+    width: calc(147% + 1.3px);
+    height: 174px;
+    transform: rotateY(180deg);
+  }
 
-.wave2 {
-  position: absolute;
-  /* top: 10; */
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  overflow: hidden;
-  line-height: 0;
-  transform: rotate(180deg);
-}
+  .wave1 .shape-fill {
+    fill: #FFFFFF;
+  }
 
-.wave2 svg {
-  position: relative;
-  display: block;
-  width: calc(133% + 1.3px);
-  height: 288px;
-}
+  .wave2 {
+    position: absolute;
+    /* top: 10; */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+  }
 
-.wave2 .shape-fill {
-  fill: #38369A;
-}
+  .wave2 svg {
+    position: relative;
+    display: block;
+    width: calc(133% + 1.3px);
+    height: 288px;
+  }
+
+  .wave2 .shape-fill {
+    fill: #38369A;
+  }
+
+  hr.yellowLine{
+    border-top: 1px solid #ffb140;
+    width: 110px;
+
+  }
+
+  .logo{
+    max-height: 60px;
+    width: auto;
+    display: absolute;
+    padding: 35px;
+  }
+
+  p.title{
+    font-size: 80px;
+    margin-bottom: auto;
+  }
+
+  p.bodyText{
+    margin-bottom: 20px;
+  }
+
+  .icon{
+    padding-top: 50px;
+    padding-bottom: 50px;
+    transform: scale(4);
+    color: rgb(80, 80, 80);
+  }
+
+  .assembly{
+    background-color: #38369a;
+    display: inline;
+    max-height: 100px;
+    color: white;
+    padding: 20px;
+  }
+  
+  .featureDescription{
+    padding: 0px 40px 30px 40px; 
+  }
+
+  a{
+    text-decoration:none;
+  }
