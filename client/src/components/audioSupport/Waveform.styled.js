@@ -40,10 +40,12 @@ export const AudioControl = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 80%;
   flex-direction: column;
-  margin-top: 10vh;
   margin-bottom: 5vh;
+  background-color: #ffb140;
+  border-radius: 15px;
+  padding: 15px
 `;
 
 // AudioControlDisplay:
