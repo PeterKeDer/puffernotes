@@ -39,7 +39,7 @@ const Result = () => {
     return (
       <div>
         <Puffer></Puffer>
-        <h1>Loading...</h1>
+        <p class="loading"><b>Loading...</b></p>
       </div>
     );
   } else if (status.status === "error") {
