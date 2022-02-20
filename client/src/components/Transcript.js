@@ -127,13 +127,13 @@ const Transcript = ({ words, selectedKeyword, onTimestampClick, keywords, keywor
   return (
     <Box
       textAlign="left"
-      backgroundColor="#1478A7"
+      backgroundColor="white"
       height="65vh"
-      marginTop="5vh"
       marginBottom="5vh"
       overflow="auto"
-      borderRadius="25px"
+      borderRadius="15px"
       padding="5px"
+      border="2px solid #020887"
     >
       {sentences.map((sentence, i) => (
         <Sentence
