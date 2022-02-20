@@ -16,11 +16,6 @@ function msToTime(d) {
 
 
 class Waveform extends Component {
-    constructor(props) {
-        super(props);
-        // create a ref to store the textInput DOM element
-        this.handleSetTime = React.createRef();
-    }
 
     state = {
         playing: false,
@@ -64,9 +59,8 @@ class Waveform extends Component {
         });
     };
 
-
-    handleSetTime = (progress) => {
-        this.waveform.seekTo(progress)
+    handleSetTime = (time) => {
+        this.waveform.seekTo(time / this.state.total_audio_time_value)
     };
 
     handlePlay = () => {
@@ -74,6 +68,14 @@ class Waveform extends Component {
         this.waveform.playPause();
         // this.setState({ current_audio_time_value: this.waveform.getDuration() });
     };
+
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.set_time !== this.state.current_audio_time_value) {
+            console.log("SET TIME! ", this.state.current_audio_time_value,  " to ", nextProps.set_time)
+            this.handleSetTime(nextProps.set_time);
+        }
+    }
 
     render() {
         if (!this.props.hasOwnProperty('audio_url')) {
@@ -92,7 +94,7 @@ class Waveform extends Component {
                 </WaveformContianer>
                 <AudioControlDisplay>
                     <div>{this.state.current_audio_time_label}/{this.state.total_audio_time_label}</div>
-                    <h4 onClick={this.handleSetTime(0.5)}>ff50</h4>
+                    {/* <h4 onClick={this.handleSetTime}>ff50</h4> */}
                 </AudioControlDisplay>
             </AudioControl>
         );
