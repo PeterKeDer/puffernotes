@@ -37,7 +37,7 @@ const Result = ({ status }) => {
   };
 
   return (
-    <Box display="flex" justifyContent="space-around">
+    <Box display="flex" justifyContent="space-around" backgroundColor="#92a8d1" overflow="hidden">
       <Grid container spacing={2} justifyContent="space-around" maxWidth={1400}>
         <Grid item xs={12} md={6}>
           <Waveform audio_url={getAudioLink(status.id)} set_time={playerTime} />

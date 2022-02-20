@@ -41,7 +41,9 @@ export const AudioControl = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  flex-direction: column
+  flex-direction: column;
+  margin-top: 10vh;
+  margin-bottom: 5vh;
 `;
 
 // AudioControlDisplay:

@@ -71,7 +71,17 @@ const ChapterCell = ({ chapterNumber, chapter, onTimestampClick }) => {
 
 const Chapters = ({ chapters, onTimestampClick }) => {
   return (
-    <Grid container direction="column" padding={2} gap={2}>
+    <Grid container direction="row" 
+    padding={2} gap={2}
+    backgroundColor="#1478A7"
+    height="55vh"
+    // width="100%"
+    marginTop="5vh"
+    marginBottom="5vh"
+    overflow="auto"
+    borderRadius="25px"
+    padding="10px"
+    >
       {chapters.map((chapter, i) => (
         <ChapterCell
           key={i}
