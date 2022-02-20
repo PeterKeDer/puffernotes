@@ -73,7 +73,8 @@ const Result = () => {
             <Chapters
               chapters={status.chapters}
               onTimestampClick={(start, end) => {
-                console.log({ start, end });
+                  console.log({ start, end });
+                  setPlayerTime(start/1000);
               }}
             />
 

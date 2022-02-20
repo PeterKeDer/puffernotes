@@ -3,6 +3,9 @@ import WaveSurfer from 'wavesurfer.js';
 
 import { WaveformContianer, Wave, PlayButton, AudioControl, AudioControlDisplay } from './Waveform.styled';
 
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import PauseIcon from '@mui/icons-material/Pause';
+
 function msToTime(d) {
     var h = Math.floor(d / 3600);
     var m = Math.floor(d % 3600 / 60);
@@ -18,6 +21,7 @@ function msToTime(d) {
 class Waveform extends Component {
 
     state = {
+        ready: false,
         playing: false,
         total_audio_time_value: 0,
         total_audio_time_label: "",
@@ -49,6 +53,8 @@ class Waveform extends Component {
 
         this.waveform.on('ready', () => {
             let time_value = this.waveform.getDuration();
+            this.setState({ ready: true });
+            this.props.onReady();
             this.setState({ total_audio_time_value: time_value });
             this.setState({ total_audio_time_label: msToTime(time_value) });
         });
@@ -66,7 +72,6 @@ class Waveform extends Component {
     handlePlay = () => {
         this.setState({ playing: !this.state.playing });
         this.waveform.playPause();
-        // this.setState({ current_audio_time_value: this.waveform.getDuration() });
     };
 
 
@@ -77,16 +82,26 @@ class Waveform extends Component {
         }
     }
 
+    generatePlayPause(status){
+        if (!status){
+            return (
+                <PlayArrowIcon />
+            );
+        }
+        return (<PauseIcon />);
+    }
+
     render() {
         if (!this.props.hasOwnProperty('audio_url')) {
             console.log("No Audio URL passed in!")
         }
         const url = this.props.audio_url;
+        
         return (
             <AudioControl>
                 <WaveformContianer>
                     <PlayButton onClick={this.handlePlay} >
-                        {!this.state.playing ? 'Play' : 'Pause'}
+                        {this.generatePlayPause(this.state.playing)}
                     </PlayButton>
 
                     <Wave id="waveform" />
