@@ -1,5 +1,7 @@
 .flex-container {
     display: flex;
+    margin-right: 2%;
+    margin-left: 2%;
 }
 
 .flex-child {
