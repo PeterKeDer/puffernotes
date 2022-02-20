@@ -1,6 +1,6 @@
 import './Home.css';
 import NavButton from '../components/NavButton';
-import UploadBox from '../components/UploadBox';
+// import UploadBox from '../components/UploadBox';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import logo from '../img/puffer_logo.png';
 import clip from '../img/clip-01-01.png';
@@ -71,6 +71,8 @@ const Home = () => {
         </div>
         <div class="assembly"><a href="https://www.assemblyai.com/?utm_source=google&utm_medium=cpc&utm_campaign=brand&gclid=CjwKCAiAx8KQBhAGEiwAD3EiP8p3EiAkgLyHvSDxKmS3QmE3rPUPPplFO1CLckH6AM3M7JgFa2lcUhoCgqIQAvD_BwE"><p class="assembly"><b>Powered by AssemblyAI</b></p></a></div>
       </section>
+
+
     </ThemeProvider>
 
   );

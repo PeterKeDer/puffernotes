@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 const audioStorage = multer.diskStorage({
   destination: (req, file, cb) => {
     const path = `${process.env.STORAGE_PATH}/audio`;
-    fs.mkdirSync(path, { recursive: true })
+    fs.mkdirSync(path, { recursive: true });
     cb(null, path);
   },
   filename: (req, file, cb) => {
@@ -13,6 +13,9 @@ const audioStorage = multer.diskStorage({
     cb(null, file.fieldname + "-" + uniqueSuffix);
   },
 });
-const audioUpload = multer({ storage: audioStorage });
+const audioUpload = multer({
+  storage: audioStorage,
+  limits: { fileSize: 5e+7 },
+});
 
 export default audioUpload;

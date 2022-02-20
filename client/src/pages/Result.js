@@ -1,34 +1,45 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import Puffer from "../components/Puffer";
+
 import { getStatus } from "../helpers/endpoints";
+import ResultComponent from "../components/Result";
 
 const Result = () => {
   const { id } = useParams();
   const [status, setStatus] = useState(null);
-  const isComplete = status && (status.status === "completed" || status.status === "error");
+  const isComplete =
+    status && (status.status === "completed" || status.status === "error");
 
   useEffect(() => {
     if (id === null || id === "") return;
 
-    const interval = setInterval(async () => {
+    const fetchStatus = async () => {
       if (isComplete) return;
-
-      console.log("Polling for status");
 
       const status = await getStatus(id);
       setStatus(status);
-    }, 10000);
+    };
+
+    fetchStatus();
+    const interval = setInterval(fetchStatus, 10000);
 
     return () => clearInterval(interval);
   }, [id, isComplete]);
 
   if (status === null || !isComplete) {
+    document.body.style = 'background: #020887;';
     return (
       <div>
+        <Puffer></Puffer>
         <h1>Loading...</h1>
       </div>
     );
   } else if (status.status === "error") {
+    document.body.style = 'background: white;';
     return (
       <div>
         <h1>Error</h1>
@@ -36,11 +47,9 @@ const Result = () => {
       </div>
     );
   } else {
+    document.body.style = 'background: white;';
     return (
-      <div>
-        <h1>Result</h1>
-        <p>{status.text}</p>
-      </div>
+      <ResultComponent status={status} />
     );
   }
 };

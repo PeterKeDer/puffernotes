@@ -14,7 +14,7 @@ async function postUpload(file) {
   return response.data;
 }
 
-async function getAudioLink(id) {
+function getAudioLink(id) {
   return `${apiUrl}/audio/${id}`;
 }
 

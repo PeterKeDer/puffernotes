@@ -1,0 +1,33 @@
+img {
+  width: 40%;
+}
+
+$time: 800ms;
+$number-of-frames: 5;
+$frame-duration: $time / $number-of-frames;
+
+@keyframes frame-animation {
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.Animation {
+  overflow: hidden;
+  max-height: 20%;
+}
+
+.Animation-frames {
+  animation: frame-animation $time infinite;
+  animation-timing-function: steps($number-of-frames);
+  display: flex;
+  width: $number-of-frames * 100%;
+}
+
+.Animation-frame {
+  display: block;
+  width: 100% / $number-of-frames;
+  flex-basis: 100% / $number-of-frames;
+  max-width: 100% / $number-of-frames;
+  width: 100% / $number-of-frames;
+}
