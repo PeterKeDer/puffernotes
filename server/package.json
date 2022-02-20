@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon --ignore 'storage/*' --exec babel-node src/index.js",
-    "build": "babel src/index.js --out-file index-compiled.js"
+    "build": "babel src/index.js --out-file build/index-compiled.js",
+    "postinstall": "npm run build",
+    "prod": "babel-node src/index.js"
   },
   "author": "",
   "license": "ISC",
