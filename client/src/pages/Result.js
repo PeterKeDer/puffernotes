@@ -2,10 +2,13 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getStatus } from "../helpers/endpoints";
 
+import Chapters from "../components/Chapters";
+
 const Result = () => {
   const { id } = useParams();
   const [status, setStatus] = useState(null);
-  const isComplete = status && (status.status === "completed" || status.status === "error");
+  const isComplete =
+    status && (status.status === "completed" || status.status === "error");
 
   useEffect(() => {
     if (id === null || id === "") return;
@@ -39,7 +42,12 @@ const Result = () => {
     return (
       <div>
         <h1>Result</h1>
-        <p>{status.text}</p>
+        <Chapters
+          chapters={status.chapters}
+          onClickTimestamp={(start, end) => {
+            console.log({ start, end });
+          }}
+        />
       </div>
     );
   }
