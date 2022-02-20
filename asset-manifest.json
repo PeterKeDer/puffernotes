@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/puffernotes/static/css/main.1fb6bc4f.css",
+    "main.js": "/puffernotes/static/js/main.d794a226.js",
+    "static/js/787.c4e7f8f9.chunk.js": "/puffernotes/static/js/787.c4e7f8f9.chunk.js",
+    "static/media/1.png": "/puffernotes/static/media/1.f93fdab2a1b8ad2dfa98.png",
+    "static/media/3.png": "/puffernotes/static/media/3.f93fdab2a1b8ad2dfa98.png",
+    "static/media/2.png": "/puffernotes/static/media/2.dcef0da9af9218f7ebc8.png",
+    "static/media/0.png": "/puffernotes/static/media/0.7c9fddca76f36988ebdb.png",
+    "static/media/4.png": "/puffernotes/static/media/4.7c9fddca76f36988ebdb.png",
+    "static/media/clip-01-01.png": "/puffernotes/static/media/clip-01-01.465d4e55fe673a107ac4.png",
+    "static/media/puffer_logo.png": "/puffernotes/static/media/puffer_logo.25d5eddb95ff54cc3ea5.png",
+    "index.html": "/puffernotes/index.html",
+    "main.1fb6bc4f.css.map": "/puffernotes/static/css/main.1fb6bc4f.css.map",
+    "main.d794a226.js.map": "/puffernotes/static/js/main.d794a226.js.map",
+    "787.c4e7f8f9.chunk.js.map": "/puffernotes/static/js/787.c4e7f8f9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1fb6bc4f.css",
+    "static/js/main.d794a226.js"
+  ]
+}
