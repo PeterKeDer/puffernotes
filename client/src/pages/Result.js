@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
+// import Box from "@mui/material/Box";
+// import Grid from "@mui/material/Grid";
+// import Typography from "@mui/material/Typography";
 import Puffer from "../components/Puffer";
 
 import "./style.css"
@@ -39,7 +39,7 @@ const Result = () => {
     return (
       <div>
         <Puffer></Puffer>
-        <h1>Loading...</h1>
+        <p class="loading"><b>Loading...</b></p>
       </div>
     );
   } else if (status.status === "error") {
@@ -55,8 +55,8 @@ const Result = () => {
     return (
       <div className="page">
         <div className="page-head">
-          <img className="image-container" src={logo}></img>
-        </div>
+           <img className="image-container" src={logo} alt="logo"></img>
+           </div>
         <ResultComponent status={status} />
       </div>
 
