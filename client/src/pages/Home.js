@@ -2,6 +2,11 @@ import './Home.css';
 import NavButton from '../components/NavButton';
 import UploadBox from '../components/UploadBox';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import logo from '../img/puffer_logo.png';
+import CollectionsBookmarkIcon from '@mui/icons-material/CollectionsBookmark';
+import BorderColorSharpIcon from '@mui/icons-material/BorderColorSharp';
+import RecordVoiceOverSharpIcon from '@mui/icons-material/RecordVoiceOverSharp';
+
 
 const theme = createTheme({
   palette: {
@@ -17,35 +22,42 @@ const theme = createTheme({
 const Home = () => {
   return (
     <ThemeProvider theme={theme}>
-
-
-      <section class="dark-blue-background">
-        <header class="header-text">
-          <h1>PufferNotes</h1>
-          <h3>AI-powered summaries of lecture recordings, speeches, audiobooks, and more</h3>
+      <section className="dark-blue-background">
+        <img src={logo} alt="pufferfish" className="logo"></img>
+        <header className="header-text">
+          <p className="title">Puff Up <br></br> Your <b>Notes</b></p>
+          <p className="bodyText">AI-powered summaries of lecture recordings, speeches, audiobooks, and more</p>
           <NavButton buttonColor="secondary"></NavButton>
         </header>
 
-        <div class="wave2">
+        <div className="wave2">
           <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-              <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+              <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" className="shape-fill"></path>
           </svg>
         </div>
 
-        <div class="wave1">
+        <div className="wave1">
           <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-              <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+              <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" className="shape-fill"></path>
           </svg>
         </div>
-
-
-
       </section>
 
-      <section class="white-background">
+      <section className="white-background">
         {/* <UploadBox></UploadBox> */}
+        <div className="intro_section">
+          <p>How Does It Work?</p> 
+          <hr className="yellowLine"></hr>
+        </div>
+        <div className="features-grid">
+          <div><CollectionsBookmarkIcon class="features-grid icon"></CollectionsBookmarkIcon><p>This is feature 1</p></div>
+          <div><BorderColorSharpIcon class="features-grid icon"></BorderColorSharpIcon><p>This is feature 1</p></div>
+          <div><RecordVoiceOverSharpIcon class="features-grid icon"></RecordVoiceOverSharpIcon><p>This is feature 1</p></div>
+        </div>
+
       </section>
     </ThemeProvider>
+
   );
 };
 

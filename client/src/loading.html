@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" style="background-color: #020887"> 
+<head>
+    <title>Loading...</title>
+    <style>
+        html{
+            padding: 20px;
+        }
+
+        body{
+            color: white;
+            font-family: 'Bahnschrift';
+        }
+
+        .progress{
+            position: relative;
+            width: 210px;
+            height: 30px;
+            background: #38369A;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress_fill{
+            width: 0%;
+            height: 100%;
+            background: #ffb140;
+        }
+
+        .progress_text{
+            position: absolute;
+            top: 50%;
+            right: 8px;
+            transform: translateY(-50%);
+            font: 'Bahnschrift', san-serif;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="progress">
+        <div class="progress_fill"></div>
+        <span class="progress_text">0%</span>
+    </div>
+    <script>
+        function updateProgressBar(progressBar, value){
+            value = Math.round(value);
+            progressBar.querySelector(".progress_fill").style.width = `${value}%`;
+            progressBar.querySelector(".progress_fill").textContent = `${value}%`;
+        }
+    </script>
+</body>
+</html>
