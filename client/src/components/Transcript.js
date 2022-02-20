@@ -125,7 +125,16 @@ const Transcript = ({ words, selectedKeyword, onTimestampClick, keywords, keywor
   }
 
   return (
-    <Box textAlign="left">
+    <Box
+      textAlign="left"
+      backgroundColor="#1478A7"
+      height="65vh"
+      marginTop="5vh"
+      marginBottom="5vh"
+      overflow="auto"
+      borderRadius="25px"
+      padding="5px"
+    >
       {sentences.map((sentence, i) => (
         <Sentence
           key={i}
