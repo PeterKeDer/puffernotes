@@ -5,6 +5,10 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Puffer from "../components/Puffer";
 
+import "./style.css"
+
+import logo from "../img/puffer_logo.png"
+
 import { getStatus } from "../helpers/endpoints";
 import ResultComponent from "../components/Result";
 
@@ -49,7 +53,13 @@ const Result = () => {
   } else {
     document.body.style = 'background: white;';
     return (
-      <ResultComponent status={status} />
+      <div className="page">
+        <div className="page-head">
+           <img className="image-container" src={logo}></img>
+           </div>
+        <ResultComponent status={status} />
+      </div>
+
     );
   }
 };

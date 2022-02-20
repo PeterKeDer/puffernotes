@@ -37,35 +37,37 @@ const Result = ({ status }) => {
   };
 
   return (
-    <Box display="flex" justifyContent="space-around" backgroundColor="#92a8d1" overflow="hidden">
-      <Grid container spacing={2} justifyContent="space-around" maxWidth={1400}>
-        <Grid item xs={12} md={6}>
-          <Waveform audio_url={getAudioLink(status.id)} set_time={playerTime} />
-          <Transcript
-            words={status.words}
-            keywords={keywords}
-            keywordsRef={keywordsRef}
-            selectedKeyword={
-              selectedKeyword === null ? null : keywords[selectedKeyword]
-            }
-            onTimestampClick={(start, end) => setPlayerTime(start / 1000)}
-          />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <Chapters
-            chapters={status.chapters}
-            onTimestampClick={(start, end) => setPlayerTime(start / 1000)}
-          />
+    <div className="audio-container">
+      <Waveform audio_url={getAudioLink(status.id)} set_time={playerTime} />
+      <Box display="flex" justifyContent="space-around" backgroundColor="white" overflow="hidden">
+        <Grid container spacing={2} justifyContent="space-around" maxWidth={1400}>
+          <Grid item xs={12} md={6}>
+            <Transcript
+              words={status.words}
+              keywords={keywords}
+              keywordsRef={keywordsRef}
+              selectedKeyword={
+                selectedKeyword === null ? null : keywords[selectedKeyword]
+              }
+              onTimestampClick={(start, end) => setPlayerTime(start / 1000)}
+            />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Chapters
+              chapters={status.chapters}
+              onTimestampClick={(start, end) => setPlayerTime(start / 1000)}
+            />
 
-          <Keywords
-            keywords={keywords}
-            keywordsRef={keywordsRef}
-            selectedKeyword={selectedKeyword}
-            onKeywordClick={(index) => handleKeywordClicked(index)}
-          />
+            <Keywords
+              keywords={keywords}
+              keywordsRef={keywordsRef}
+              selectedKeyword={selectedKeyword}
+              onKeywordClick={(index) => handleKeywordClicked(index)}
+            />
+          </Grid>
         </Grid>
-      </Grid>
-    </Box>
+      </Box>
+    </div>
   );
 };
 

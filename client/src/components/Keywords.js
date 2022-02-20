@@ -57,13 +57,11 @@ const Keywords = ({ keywords, selectedKeyword, onKeywordClick, keywordsRef }) =>
 
   return (
     <Box padding={2} 
-    backgroundColor="#1478A7"
+    backgroundColor="white"
     height="25vh"
-    // marginTop="5vh"
-    // marginBottom="5vh"
     overflow="auto"
-    borderRadius="25px"
-    // padding="10px"
+    borderRadius="15px"
+    border="2px solid #020887"
     >
       <Box sx={{ display: "flex", alignItems: "flex-end" }}>
         <SearchIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
