@@ -1,5 +1,9 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import Puffer from "../components/Puffer";
 
 import { getStatus } from "../helpers/endpoints";
 import ResultComponent from "../components/Result";
@@ -27,12 +31,15 @@ const Result = () => {
   }, [id, isComplete]);
 
   if (status === null || !isComplete) {
+    document.body.style = 'background: #020887;';
     return (
       <div>
+        <Puffer></Puffer>
         <h1>Loading...</h1>
       </div>
     );
   } else if (status.status === "error") {
+    document.body.style = 'background: white;';
     return (
       <div>
         <h1>Error</h1>
@@ -40,6 +47,7 @@ const Result = () => {
       </div>
     );
   } else {
+    document.body.style = 'background: white;';
     return (
       <ResultComponent status={status} />
     );
