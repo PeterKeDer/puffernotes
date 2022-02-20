@@ -1,18 +1,12 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
 
 import { getStatus } from "../helpers/endpoints";
-import Chapters from "../components/Chapters";
-import Keywords from "../components/Keywords";
-import Transcript from "../components/Transcript";
+import ResultComponent from "../components/Result";
 
 const Result = () => {
   const { id } = useParams();
   const [status, setStatus] = useState(null);
-  const [selectedKeyword, setSelectedKeyword] = useState(null);
   const isComplete =
     status && (status.status === "completed" || status.status === "error");
 
@@ -32,14 +26,6 @@ const Result = () => {
     return () => clearInterval(interval);
   }, [id, isComplete]);
 
-  const handleKeywordClicked = (keyword) => {
-    if (keyword === selectedKeyword) {
-      setSelectedKeyword(null);
-    } else {
-      setSelectedKeyword(keyword);
-    }
-  };
-
   if (status === null || !isComplete) {
     return (
       <div>
@@ -55,44 +41,7 @@ const Result = () => {
     );
   } else {
     return (
-      <Box display="flex" justifyContent="space-around">
-        <Grid
-          container
-          spacing={2}
-          justifyContent="space-around"
-          maxWidth={1400}
-        >
-          <Grid item xs={12} md={6}>
-            <Transcript
-              words={status.words}
-              selectedKeyword={
-                selectedKeyword === null
-                  ? null
-                  : status.auto_highlights_result.results[selectedKeyword]
-              }
-              onTimestampClick={(start, end) => console.log({ start, end })}
-            />
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <Chapters
-              chapters={status.chapters}
-              onTimestampClick={(start, end) => {
-                console.log({ start, end });
-              }}
-            />
-
-            {status.auto_highlights_result.status === "success" ? (
-              <Keywords
-                keywords={status.auto_highlights_result.results}
-                selectedKeyword={selectedKeyword}
-                onKeywordClick={(index) => handleKeywordClicked(index)}
-              />
-            ) : (
-              <p>No keywords detected</p>
-            )}
-          </Grid>
-        </Grid>
-      </Box>
+      <ResultComponent status={status} />
     );
   }
 };

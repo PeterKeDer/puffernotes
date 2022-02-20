@@ -10,6 +10,7 @@ const Word = ({
   onTimestampClick,
   isHighlighted,
   isSpaceHighlighted,
+  forwardRef,
 }) => {
   const { text, start, end } = word;
   const backgroundColor = isHighlighted ? orange[200] : "transparent";
@@ -18,6 +19,7 @@ const Word = ({
   return (
     <>
       <Box
+        ref={forwardRef}
         component="span"
         sx={{
           cursor: "pointer",
@@ -37,14 +39,12 @@ const Word = ({
   );
 };
 
-const Sentence = ({ sentence, selectedKeyword, onTimestampClick }) => {
+const Sentence = ({ sentence, selectedKeyword, onTimestampClick, keywordsRef, keywordStarts }) => {
   const start = sentence[0].start;
   const end = sentence[sentence.length - 1].end;
 
   const selectedIntervals =
     selectedKeyword === null ? [] : selectedKeyword.timestamps;
-
-  console.log(selectedIntervals);
 
   return (
     <Box sx={{ display: "flex", alignItems: "start" }}>
@@ -66,6 +66,16 @@ const Sentence = ({ sentence, selectedKeyword, onTimestampClick }) => {
             isSpaceHighlighted={selectedIntervals.some(
               ({ start, end }) => start <= word.start && word.end < end
             )}
+            forwardRef={(node) => {
+              // Add this element to ref if it is the start of a keyword
+              if (keywordStarts.has(word.start)) {
+                // Add node to ref
+                keywordStarts.get(word.start).forEach((indices) => {
+                  const [ki, ti] = indices;
+                  keywordsRef.current[ki][ti] = node;
+                });
+              }
+            }}
           />
         ))}
       </Typography>
@@ -73,7 +83,7 @@ const Sentence = ({ sentence, selectedKeyword, onTimestampClick }) => {
   );
 };
 
-const Transcript = ({ words, selectedKeyword, onTimestampClick }) => {
+const Transcript = ({ words, selectedKeyword, onTimestampClick, keywords, keywordsRef }) => {
   if (words.length === 0) {
     return (
       <Typography variant="body1" color="text.secondary">
@@ -81,6 +91,21 @@ const Transcript = ({ words, selectedKeyword, onTimestampClick }) => {
       </Typography>
     );
   }
+
+  // Map to keep track of the start of each keyword occurrence
+  // Maps starting timestamp to an array of [keyword index, timestamp index] into keywordsRef
+  const keywordStarts = new Map();
+
+  keywords.forEach((keyword, i) => {
+    keyword.timestamps.forEach((timestamp, j) => {
+      const start = timestamp.start;
+      if (!keywordStarts.has(start)) {
+        keywordStarts.set(start, []);
+      }
+      keywordStarts.get(start).push([i, j]);
+    });
+  });
+
 
   // Try to separate into sentences (i.e. array of arrays of words)
   const sentences = words.reduce(
@@ -104,6 +129,8 @@ const Transcript = ({ words, selectedKeyword, onTimestampClick }) => {
       {sentences.map((sentence, i) => (
         <Sentence
           key={i}
+          keywordStarts={keywordStarts}
+          keywordsRef={keywordsRef}
           sentence={sentence}
           onTimestampClick={onTimestampClick}
           selectedKeyword={selectedKeyword}

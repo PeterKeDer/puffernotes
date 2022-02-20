@@ -6,20 +6,45 @@ import ListItemText from "@mui/material/ListItemText";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import SearchIcon from "@mui/icons-material/Search";
+import Collapse from "@mui/material/Collapse";
+import Typography from "@mui/material/Typography";
 
-const KeywordCell = ({ keyword, isSelected, onKeywordClick }) => {
+import { msToTimeString } from "../helpers/timeUtil";
+
+const KeywordCell = ({ keyword, isSelected, onKeywordClick, keywordsRef }) => {
   const { text } = keyword;
 
+  const handleTimestampClick = (index) => {
+    keywordsRef.current[keyword.index][index].scrollIntoView({ block: 'center',  behavior: 'smooth' });
+  };
+
   return (
-    <ListItem disablePadding selected={isSelected}>
-      <ListItemButton onClick={() => onKeywordClick(keyword.index)}>
-        <ListItemText primary={text.toLowerCase()} />
-      </ListItemButton>
-    </ListItem>
+    <>
+      <ListItem disablePadding>
+        <ListItemButton onClick={() => onKeywordClick(keyword.index)}>
+          <ListItemText primary={text.toLowerCase()} />
+        </ListItemButton>
+      </ListItem>
+      <Collapse in={isSelected}>
+        <List disablePadding sx={{ paddingLeft: 3 }}>
+          {keyword.timestamps.map((timestamp, index) => (
+            <ListItem key={timestamp.start} disablePadding>
+              <ListItemButton onClick={() => handleTimestampClick(index)}>
+                <Typography variant="body2" color="text.secondary">
+                  {msToTimeString(timestamp.start) +
+                    " - " +
+                    msToTimeString(timestamp.end)}
+                </Typography>
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
+      </Collapse>
+    </>
   );
 };
 
-const Keywords = ({ keywords, selectedKeyword, onKeywordClick }) => {
+const Keywords = ({ keywords, selectedKeyword, onKeywordClick, keywordsRef }) => {
   const [searchText, setSearchText] = useState("");
 
   // Attach index in original array, sort by count, and filter by search text
@@ -42,10 +67,11 @@ const Keywords = ({ keywords, selectedKeyword, onKeywordClick }) => {
         />
       </Box>
       <List>
-        {displayKeywords.map(keyword => (
+        {displayKeywords.map((keyword) => (
           <KeywordCell
             key={keyword.index}
             keyword={keyword}
+            keywordsRef={keywordsRef}
             isSelected={keyword.index === selectedKeyword}
             onKeywordClick={onKeywordClick}
           />
