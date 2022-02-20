@@ -48,7 +48,7 @@ const Result = () => {
     return (
       <div>
         <Puffer></Puffer>
-        <p class="loading">
+        <p className="loading">
           <b>Loading...</b>
         </p>
         {audioDuration === null ? (
