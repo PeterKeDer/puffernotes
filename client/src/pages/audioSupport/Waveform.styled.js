@@ -21,8 +21,8 @@ export const PlayButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
   background: #EFEFEF;
   border-radius: 50%;
   border: none;
@@ -33,3 +33,25 @@ export const PlayButton = styled.button`
     background: #DDD;
   }
 `;
+
+
+// AudioControl:
+export const AudioControl = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex-direction: column
+`;
+
+// AudioControlDisplay:
+export const AudioControlDisplay = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex-direction: row;
+  justify-content: flex-start;
+`;
+
+
