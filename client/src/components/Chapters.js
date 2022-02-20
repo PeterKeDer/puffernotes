@@ -10,6 +10,7 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
 
 import { msToTimeString } from "../helpers/timeUtil";
 
@@ -24,7 +25,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-const ChapterCell = ({ chapterNumber, chapter, onClickTimestamp }) => {
+const ChapterCell = ({ chapterNumber, chapter, onTimestampClick }) => {
   const { start, end, headline, gist, summary } = chapter;
   const [expanded, setExpanded] = useState(false);
 
@@ -37,16 +38,16 @@ const ChapterCell = ({ chapterNumber, chapter, onClickTimestamp }) => {
       <CardHeader
         title={<Typography variant="h6">{chapterNumber + 1}. {gist}</Typography>}
         action={
-          <Button onClick={() => onClickTimestamp(start, end)}>
+          <Button onClick={() => onTimestampClick(start, end)}>
             {msToTimeString(start) + " - " + msToTimeString(end)}
           </Button>
         }
       />
-      <CardContent>
+      <Box paddingX={2}>
         <Typography variant="body" color="text.secondary">
           {headline}
         </Typography>
-      </CardContent>
+      </Box>
       <CardActions disableSpacing>
         <ExpandMore
           expand={expanded}
@@ -68,7 +69,7 @@ const ChapterCell = ({ chapterNumber, chapter, onClickTimestamp }) => {
   );
 };
 
-const Chapters = ({ chapters, onClickTimestamp }) => {
+const Chapters = ({ chapters, onTimestampClick }) => {
   return (
     <Grid container direction="column" padding={2} gap={2}>
       {chapters.map((chapter, i) => (
@@ -76,7 +77,7 @@ const Chapters = ({ chapters, onClickTimestamp }) => {
           key={i}
           chapterNumber={i}
           chapter={chapter}
-          onClickTimestamp={onClickTimestamp}
+          onTimestampClick={onTimestampClick}
         />
       ))}
     </Grid>

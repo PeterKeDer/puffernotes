@@ -1,9 +1,13 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getStatus } from "../helpers/endpoints";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
 
+import { getStatus } from "../helpers/endpoints";
 import Chapters from "../components/Chapters";
 import Keywords from "../components/Keywords";
+import Transcript from "../components/Transcript";
 
 const Result = () => {
   const { id } = useParams();
@@ -42,24 +46,38 @@ const Result = () => {
     );
   } else {
     return (
-      <div>
-        <h1>Result</h1>
-        <Chapters
-          chapters={status.chapters}
-          onClickTimestamp={(start, end) => {
-            console.log({ start, end });
-          }}
-        />
+      <Box display="flex" justifyContent="space-around">
+        <Grid
+          container
+          spacing={2}
+          justifyContent="space-around"
+          maxWidth={1400}
+        >
+          <Grid item xs={12} md={6}>
+            <Transcript
+              words={status.words}
+              onTimestampClick={(start, end) => console.log({ start, end })}
+            />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Chapters
+              chapters={status.chapters}
+              onTimestampClick={(start, end) => {
+                console.log({ start, end });
+              }}
+            />
 
-        {status.auto_highlights_result.status === "success" ? (
-          <Keywords
-            keywords={status.auto_highlights_result.results}
-            onKeywordClick={(index) => console.log(index)}
-          />
-        ) : (
-          <p>No keywords detected</p>
-        )}
-      </div>
+            {status.auto_highlights_result.status === "success" ? (
+              <Keywords
+                keywords={status.auto_highlights_result.results}
+                onKeywordClick={(index) => console.log(index)}
+              />
+            ) : (
+              <p>No keywords detected</p>
+            )}
+          </Grid>
+        </Grid>
+      </Box>
     );
   }
 };
