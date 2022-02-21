@@ -64,7 +64,9 @@ class Waveform extends Component {
   }
 
   handleSetTime = (time) => {
-    this.waveform.seekTo(time / this.state.total_audio_time_value);
+    if (this.state.total_audio_time_value !== 0) {
+      this.waveform.seekTo(time / this.state.total_audio_time_value);
+    }
   };
 
   handlePlay = () => {
@@ -73,7 +75,7 @@ class Waveform extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.set_time !== this.state.current_audio_time_value) {
+    if (nextProps.set_time !== this.state.current_audio_time_value && nextProps.set_time !== this.props.set_time) {
       console.log(
         "SET TIME! ",
         this.state.current_audio_time_value,
